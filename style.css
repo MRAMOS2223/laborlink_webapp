@@ -185,7 +185,7 @@ button[type="submit"] {
     margin-top:25px ;
 }
 
-a-pass {
+.goback {
     display: block;
     text-align: center;
     margin-top: 25px;
@@ -194,7 +194,7 @@ a-pass {
     font-size: 12px;
 }
 
-a-pass:hover {
+.goback:hover {
     text-decoration: underline;
 }
 
