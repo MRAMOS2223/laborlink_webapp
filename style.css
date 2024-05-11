@@ -209,5 +209,67 @@ button[type="submit"] {
     max-width: 400px;
        
 }
-
-
+.admin{
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+html{
+    overflow-x: hidden;
+}
+#sidebar{
+    
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100%;
+        background: white;
+        z-index: 2000;
+            transition: .3s ease;
+        overflow-x: hidden;
+        scrollbar-width: none;
+}
+#sidebar::--webkit-scrollbar{
+    display: none;
+}
+#sidebar.hide{
+    width: 60px;
+}
+#sidebar .brand {
+	font-size: 24px;
+	font-weight: 700;
+	height: 56px;
+	display: flex;
+	align-items: center;
+	color:  rgba(53, 104, 153);
+	position: sticky;
+	top: 0;
+	left: 0;
+	background: lightgrey;
+	z-index: 500;
+	padding-bottom: 20px;
+	box-sizing: content-box;
+}
+#sidebar .logo{
+    display: flex;
+    align-items: center;
+}
+#sidebar .logo img{
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 50px;
+    height: 50px;
+}
+#sidebar .logo h1{
+    font-size: 20px;
+    margin-left: 20;
+}
