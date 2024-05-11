@@ -29,7 +29,7 @@ import AnalyticsTotalRevenue from '../views/dashboard/AnalyticsTotalRevenue.vue'
             <VRow>
               <VCardText class="margin-left margin-symmetrical">
                 <h5 class="text-h3 text-no-wrap mb-3 color-green">
-                  3
+                  {{ hiredCount }}
                 </h5>
                 <p class="mb-1">
                   Successful Hires
@@ -59,7 +59,7 @@ import AnalyticsTotalRevenue from '../views/dashboard/AnalyticsTotalRevenue.vue'
             <VRow>
               <VCardText class="margin-left margin-symmetrical">
                 <h5 class="text-h3 text-no-wrap mb-3 color-blue">
-                  10
+                  {{ jobPostingCount }}
                 </h5>
                 <p class="mb-1">
                   Job Postings
@@ -87,7 +87,7 @@ import AnalyticsTotalRevenue from '../views/dashboard/AnalyticsTotalRevenue.vue'
             <VRow>
               <VCardText  class="margin-left margin-symmetrical">
                 <h5 class="text-h3 text-no-wrap mb-3 color-yellow">
-                  30
+                  {{ applicantCount }}
                 </h5>
                 <p class="mb-1">
                   Applicants
@@ -118,6 +118,67 @@ import AnalyticsTotalRevenue from '../views/dashboard/AnalyticsTotalRevenue.vue'
     </VCol>
   </VRow>
 </template>
+<script>
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            BASE_API: window.location.origin+"/api",
+            GET_HIRED_COUNT: "/v1/statistics/hire-count",
+            GET_JOB_POSTING_COUNT: "/v1/statistics/job-postings-count",
+            GET_APPLICANT_COUNT: "/v1/statistics/applicants-count",
+            hiredCount: 0,
+            jobPostingCount: 0,
+            applicantCount: 0,
+        }
+    },
+    mounted() {
+        this.getHiredCount();
+        this.getJobPostingCount();
+        this.getApplicantCount()
+    },
+    methods: {
+        getHiredCount(){
+            axios
+                .get(this.BASE_API.concat(this.GET_HIRED_COUNT), this.status)
+                .then(response => {
+                    if(response.data.success){
+                        var data = response.data.data
+                        this.hiredCount = data;
+                    }
+                });
+        },
+
+        getJobPostingCount(){
+            axios
+                .get(this.BASE_API.concat(this.GET_JOB_POSTING_COUNT), this.status)
+                .then(response => {
+                    if(response.data.success){
+                        var data = response.data.data
+                        this.jobPostingCount = data;
+                    }
+                });
+        },
+
+        getApplicantCount(){
+            axios
+                .get(this.BASE_API.concat(this.GET_APPLICANT_COUNT), this.status)
+                .then(response => {
+                    if(response.data.success){
+                        var data = response.data.data
+                        this.applicantCount = data;
+                    }
+                });
+        },
+
+    },
+    created(){
+
+    },
+
+}
+</script>
 <style>
 .color-green{
   color:#2BC155;

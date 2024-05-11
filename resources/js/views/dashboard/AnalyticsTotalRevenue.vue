@@ -9,25 +9,6 @@ import {
 const vuetifyTheme = useTheme()
 const display = useDisplay()
 
-const series = [
-  {
-    name: `${ new Date().getFullYear() - 1 }`,
-    data: [
-      18,
-      7,
-      15,
-      29,
-      18,
-      12,
-      9,
-      30,
-      23,
-      56,
-      10,
-      69,
-    ],
-  },
-]
 
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
@@ -132,20 +113,6 @@ const chartOptions = computed(() => {
   }
 })
 
-const balanceData = [
-  {
-    icon: 'bx-dollar',
-    amount: '$32.5k',
-    year: '2023',
-    color: 'primary',
-  },
-  {
-    icon: 'bx-wallet',
-    amount: '$41.2k',
-    year: '2022',
-    color: 'info',
-  },
-]
 </script>
 
 <template>
@@ -169,9 +136,8 @@ const balanceData = [
           </template>
         </VCardItem>
 
-        <!-- bar chart -->
         <VueApexCharts
-          
+          ref="earningsChart"
           type="line"
           :height="336"
           :options="chartOptions.chart"
@@ -182,6 +148,46 @@ const balanceData = [
     </VRow>
   </VCard>
 </template>
+<script>
+import axios from 'axios';
+
+
+let series = [
+  {
+    name: `${ new Date().getFullYear() }`,
+    data: [
+      
+    ],
+}];
+
+export default {
+  data() {
+        return {
+            BASE_API: window.location.origin+"/api",
+            GET_MONTHLY_EARNINGS: "/v1/statistics/monthly-earnings",
+        }
+    },
+    mounted(){
+      this.getMonthlyEarnings()
+    },
+    methods: {
+      getMonthlyEarnings(){
+          axios
+              .get(this.BASE_API.concat(this.GET_MONTHLY_EARNINGS), this.status)
+              .then(response => {
+                  if(response.data.success){
+                      var data = response.data.data
+                      console.log(series);
+
+                      this.$refs.earningsChart.updateSeries([{
+                        data: data
+                      }], false, true);
+                  }
+              });
+      },
+    },
+}
+</script>
 
 <style lang="scss">
 #bar-chart .apexcharts-series[rel="2"] {

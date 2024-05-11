@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployersController;
 use App\Http\Controllers\ApplicantsController;
 use App\Http\Controllers\SubscribersController;
 use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/applicants', [ApplicantsController::class, 'index']);
     Route::get('/subscribers', [SubscribersController::class, 'index']);
     Route::get('/transactions', [TransactionsController::class, 'index']);
+
+    /* Dashboard */
+    Route::get('/statistics/hire-count', [DashboardController::class, 'getHireCount']);
+    Route::get('/statistics/job-postings-count', [DashboardController::class, 'getJobPostingsCount']);
+    Route::get('/statistics/applicants-count', [DashboardController::class, 'getApplicantsCount']);
+    Route::get('/statistics/monthly-earnings', [DashboardController::class, 'getMonthlyEarnings']);
 });
