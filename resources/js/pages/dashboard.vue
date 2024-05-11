@@ -8,13 +8,6 @@ import AnalyticsTotalRevenue from '../views/dashboard/AnalyticsTotalRevenue.vue'
 
 <template>
   <VRow>
-    <!-- <VCol
-      cols="12"
-      md="8"
-    >
-      <AnalyticsCongratulations />
-    </VCol> -->
-
     <VCol
       cols="12"
       sm="12"

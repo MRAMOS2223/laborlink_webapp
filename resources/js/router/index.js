@@ -26,7 +26,7 @@ const router = createRouter({
         },
         {
           path: 'statistics',
-          component: () => import('../pages/dashboard.vue'),
+          component: () => import('../pages/statistics.vue'),
         },
         {
           path: 'subscribers',

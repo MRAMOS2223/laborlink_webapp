@@ -34,4 +34,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/statistics/job-postings-count', [DashboardController::class, 'getJobPostingsCount']);
     Route::get('/statistics/applicants-count', [DashboardController::class, 'getApplicantsCount']);
     Route::get('/statistics/monthly-earnings', [DashboardController::class, 'getMonthlyEarnings']);
+    Route::get('/statistics/rejected-count', [DashboardController::class, 'getRejectedCount']);
+    Route::get('/statistics/companies-count', [DashboardController::class, 'getCompaniesCount']);
+    Route::get('/statistics/interviewed-count', [DashboardController::class, 'getInterviewedCount']);
+    Route::get('/statistics/profile-strength', [DashboardController::class, 'getProfileStrength']);
 });
