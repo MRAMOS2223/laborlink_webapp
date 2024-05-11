@@ -7,14 +7,14 @@
 ## Type Support for `.vue` Imports in TS
 
 ## Pre-requisites
--PHP version 8.3.4
--Node version 21.7.2
--GRPC(To enable development and execution of Google Firebase services - open source high performance remote procedure call framework) 
+* PHP version 8.3.4
+* Node version 21.7.2
+* GRPC(To enable development and execution of Google Firebase services - open source high performance remote procedure call framework) 
 Reference for GRPC: https://cloud.google.com/php/grpc
 
 ## Project Setup
 
-BACKEND SETUP COMMANDS
+### BACKEND SETUP COMMANDS
 
 ```sh
 composer update
@@ -32,19 +32,19 @@ php artisan key:generate
 php artisan serve
 ```
 
-FRONTEND SETUP COMMANDS
+### FRONTEND SETUP COMMANDS
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+#### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+#### Type-Check, Compile and Minify for Production
 
 ```sh
 npm run build
