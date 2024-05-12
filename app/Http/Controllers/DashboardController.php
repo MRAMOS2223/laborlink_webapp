@@ -96,8 +96,8 @@ class DashboardController extends Controller
 
         foreach ($documents as $document) {
             $intMonth = (int) date("m", strtotime($document->data()["transaction_datetime"]));
-
-            $data[$intMonth - 1] = floatval($document->data()["amount_paid"]);
+            if ($document->data()["status"] != "Cancelled")
+                $data[$intMonth - 1] = $data[$intMonth - 1] + floatval($document->data()["amount_paid"]);
         }
 
         $response = [

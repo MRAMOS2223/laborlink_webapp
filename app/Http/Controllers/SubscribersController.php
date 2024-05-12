@@ -15,7 +15,7 @@ class SubscribersController extends Controller
     public function index(Request $request)
     {
         $subscribers = [];
-        $documents = $this->firestoreDB->collection('subscribers')->documents();
+        $documents = $this->firestoreDB->collection('subscribers')->orderBy("created_on", "DESC")->documents();
 
         foreach ($documents as $document) {
             $subscriberDocuments = $this->firestoreDB->collection('employers')->where("email_address", "==", $document->data()["employer_email_address"])->documents();
@@ -28,6 +28,8 @@ class SubscribersController extends Controller
                 $tempSubscriberDocument["premium_plan_starting_date"] = $document["premium_plan_starting_date"];
                 $tempSubscriberDocument["premium_plan_ending_date"] = $document["premium_plan_ending_date"];
                 $tempSubscriberDocument["monthly_payment"] = $document["monthly_payment"];
+                $tempSubscriberDocument["id"] = $document["id"];
+                $tempSubscriberDocument["status"] = $document["is_cancelled"] == "true" ? 'Cancelled' : 'Subscribed';
                 array_push($subscribers, $tempSubscriberDocument);
             }
 

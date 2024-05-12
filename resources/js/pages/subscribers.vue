@@ -3,7 +3,7 @@
     <VRow>
         <VCol
             v-for="data in subscriberData"
-            :key="data.email_address"
+            :key="data.id"
             cols="12"
             md="12"
             lg="12"
@@ -24,7 +24,7 @@
                     <span class="text-subtitle-2 text-black me-4">{{ data.plan }} plan</span>
                 </div>
                 <div class="d-flex align-center">
-                    <span class="text-subtitle-2 text-black">{{ data.employer_address }}</span>
+                    <span class="text-subtitle-2 text-black">{{ data.status }}</span>
                 </div>
                 </VCardText>
             </VCard>

@@ -43,7 +43,8 @@ function updateTitle(linkTitle) {
     }
 }
 
-updateTitle('dashboard');
+
+updateTitle(window.location.href);
 
 </script>
 
