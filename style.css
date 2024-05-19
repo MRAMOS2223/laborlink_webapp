@@ -209,32 +209,30 @@ button[type="submit"] {
     max-width: 400px;
        
 }
-.admin{
-    font-size: 15px;
-    font-weight: 500;
-    color: black;
-}
+
+/*chat support*/
+
 li{
     list-style: none;
+    font-weight: 500;
+    
 }
 a{
     text-decoration: none;
-}
-html{
-    overflow-x: hidden;
+    color: #999898;
+    font-size: 13px;
 }
 #sidebar{
-    
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 280px;
-        height: 100%;
-        background: white;
-        z-index: 2000;
-            transition: .3s ease;
-        overflow-x: hidden;
-        scrollbar-width: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: white;
+   z-index: 2000;
+    transition: .3s ease;
+    overflow-x: hidden;
+    font-family: 'Poppins';
 }
 #sidebar::--webkit-scrollbar{
     display: none;
@@ -242,34 +240,134 @@ html{
 #sidebar.hide{
     width: 60px;
 }
-#sidebar .brand {
-	font-size: 24px;
-	font-weight: 700;
-	height: 56px;
-	display: flex;
-	align-items: center;
-	color:  rgba(53, 104, 153);
-	position: sticky;
-	top: 0;
-	left: 0;
-	background: lightgrey;
-	z-index: 500;
-	padding-bottom: 20px;
-	box-sizing: content-box;
-}
 #sidebar .logo{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#sidebar .side-menu{
+    width: 100%;
+    margin-top: 48px;
+}
+#sidebar .side-menu li{
+    height: 48px;
+    background: transparent;
+    margin-left: 6px;
+    border-radius: 15px;
+    padding: 4px;
+}
+#sidebar .side-menu li.active{
+    background: whitesmoke;
+    position: relative;
+    height: 40px;
+}
+#sidebar .bx{
+    font-size: medium;
+    margin-right    : 20px;
+}
+
+#sidebar li.active i.bx{
+    background-color: white;
+    border-radius: 13px;
+    height: 13px;
+    width: 13px;
+    padding: 10px;
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+    margin-right    : 20px;
+    color:rgba(53, 104, 153)
+    
+}
+
+#sidebar li.active{
+    margin-top: -60px;
+    margin-bottom: 20px;
+}
+#sidebar footer{
+    margin-top: 100px;
+}
+#sidebar.hide .side-menu li a {
+    width: calc(48px-(4px*2));
+    transition: width .3s ease;
+}
+
+#content{
+    margin-left: 270px;
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: .3s ease;
+}
+#sidebar.hide ~ #content{
+    width: calc(100%-60px);
+    left: 60px;
+}
+#content nav{
+    height: 80px;
+    width: calc(100% - 30px);
+    background: white;
+    padding: 0   20px;
     display: flex;
     align-items: center;
+    gap: 50px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    margin-bottom: 100%;
+    margin-top: -52px;
+    
 }
-#sidebar .logo img{
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 50px;
-    height: 50px;
+#content nav::before{
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: -40px;
+    left: 0;
+    border-radius: 50%;
+    box-shadow: -20px -20px 0 white;
 }
-#sidebar .logo h1{
+#content nav a {
+    color: black;
+    font-weight: 500;
+    font-size: 15px;
+}
+.active span{
+    color: black;
+}
+#content nav .nav-link{
+    font-size: 15px;
+    transition: .3s ease;
+    font-weight: 600;
+    flex-grow: 1;
+}
+#content nav .notification{
     font-size: 20px;
-    margin-left: 20;
+    position: relative;
+}
+#content nav .profile img{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    
+}
+.chat-container{
+    display: flex;
+    height: 100%;
+}
+.messages{
+    width: 30%;
+    border-right: 1px solid #ddd;
+    background: #fff;
+    overflow-y: auto;
+    border-radius: 30px;
+}
+.message-header h2 {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: black;
 }
