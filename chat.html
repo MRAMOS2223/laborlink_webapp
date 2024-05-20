@@ -79,20 +79,28 @@
     <div class="chat-container">
         <div class="messages">
             <div class="message-header">
-                <h2>Messages</h2>
-                <input type="text" id="search" placeholder="Search messages">
+                <a href="#" class="message-nav">Messages</a> 
+                <i class='bx bx-chevron-down' id="arrow"></i>
+                <i class='bx bxs-plus-circle' style="font-size: x-large; color: rgba(53, 104, 153);"></i>
+                <hr class="line" style="width: 86%;">   
+                <input type="text" name="search" placeholder="Search messages">
+                
             </div>
-            <ul class="message-list" id="messageList">
-                <li class="message-item active" data-id="1">
+            <ul class="message-list" id="messageList"> 
+         
+                <li class="message-item active" >
                     <img src="images/user1.jpg" alt="">
-                    <div>
+                    <div class="messages-data">
                         <span>John Doe</span>
                         <small>24m</small>
                         <p>Thank you</p>
                         <span class="tag">Bug</span>
                     </div>
-                </li>
-            </ul>
+            </li>
+           
+       
+    </ul>
+</div>
             <div class="chat-window">
                 <div class="chat-header">
                     <div>
@@ -103,15 +111,18 @@
                     <button id="callButton">Call</button>
                 </div>
                 <div class="chat-content" id="chatContent">
-                    <!-- Chat messages will be dynamically added here -->
+                    <div class="message"><span>Hello, can you help me with an issue that I found in the app?</span></div>
+                    <div class="message support"><span>Hi John Doe, how may I help you?</span></div>
+                    <div class="message"><span>I found an issue in the “Apply” button in the Job Details screen.</span></div>
+                    <div class="message support"><span>Can you send a screenshot of this scenario?</span></div>
+                    <div class="message"><span>Okay. I have attached it now here in this message. Thank you</span></div>
                 </div>
                 <div class="chat-input">
                     <input type="text" id="messageInput" placeholder="Type a message">
-                    <button id="sendButton">Send</button>
                 </div>
             </div>
         </div>
-    </div>
+    
 </section>
     <script src="script.js"></script>
 </body>
