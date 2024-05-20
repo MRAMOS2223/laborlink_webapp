@@ -361,6 +361,7 @@ a{
     height: calc(100vh - 100px);
     background-color: white;
     border-radius: 25px;
+    
 }
 .messages{
     width: 25%;
@@ -370,6 +371,11 @@ a{
     border-radius: 25px;
     flex-direction: column;
     display: flex;
+    
+} 
+.message-header{
+    border-bottom: 1px solid #ddd;
+    
 }
 
 .message-header .message-nav {
@@ -379,18 +385,19 @@ a{
     font-size: 13px;
     font-weight: 600;
     color: black;
+
 }
 .message-header  i.bx {
     margin-top: 15px;
     margin-bottom: 10px;
     margin-left: -2px    ;
     padding-top: 8px;
-    
+
     
 }
 
 
-.message-header input[type=text]{
+.search-message input[type=text]{
   width: 90%;
   box-sizing: border-box;
   border: 1px whitesmoke;
@@ -525,4 +532,10 @@ a{
     background-repeat: no-repeat;
     background-position: 99%;
     background-size: 20px;
+}
+.chat-input img{
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+    margin-right: 10px;
 }
