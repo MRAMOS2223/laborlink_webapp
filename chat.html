@@ -5,104 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaborLink - Chat Support</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section id="sidebar">
         <div class="logo">
-        <img src="images/logo.png" alt="Laborlink logo">
-        <h1>LaborLink</h1>
-    </div>
-    <ul class="side-menu">
-        <li>
-            <a href="#">
-                <i class='bx bxs-home'></i>
-                <span class="text">Dashboard</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bxs-buildings'></i>
-                <span class="text">Employers</span>
-            </a>
-        </li>
-        <li>
-        <a href="#">
-            <i class='bx bx-group' ></i>
-            <span class="text">Applicants</span>
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <li class="active">
-            <i class='bx bxs-chat'></i>
-            <span class="text">Chat Support</span>
-        </a>
-    </li>
-    </li>
-    <li>
-        <a href="#">
-            <i class='bx bxs-pie-chart'></i>
-            <span class="text">Statistics</span>
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <i class='bx bxs-calendar-star'></i>
-            <span class="text">Subscribers</span>
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <i class='bx bxs-wallet-alt'></i>
-            <span class="text">Transactions</span>
-        </a>
-    </li>
-    </ul>
-    <footer>
-        <p>&copy; 2024 All Rights Reserved</p>
-    </footer>
+            <img src="images/logo.png" alt="Laborlink logo">
+            <h1>LaborLink</h1>
+        </div>
+        <ul class="side-menu">
+            <li><a href="#"><i class='bx bxs-home'></i><span class="text">Dashboard</span></a></li>
+            <li><a href="#"><i class='bx bxs-buildings'></i><span class="text">Employers</span></a></li>
+            <li><a href="#"><i class='bx bx-group'></i><span class="text">Applicants</span></a></li>
+            <li class="active"><a href="#"><i class='bx bxs-chat'></i><span class="text">Chat Support</span></a></li>
+            <li><a href="#"><i class='bx bxs-pie-chart'></i><span class="text">Statistics</span></a></li>
+            <li><a href="#"><i class='bx bxs-calendar-star'></i><span class="text">Subscribers</span></a></li>
+            <li><a href="#"><i class='bx bxs-wallet-alt'></i><span class="text">Transactions</span></a></li>
+        </ul>
+        <footer><p>&copy; 2024 All Rights Reserved</p></footer>
     </section>
 
     <section id="content">
-    <nav>
-        <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Chat Support</a>
-        <a href="#" class="notification">
-            <i class='bx bxs-bell' style="color: rgba(65, 65, 65, 0.967);"></i>
-        </a>
-        <a href="#" class="profile">
-            <img src="images/logo.png">
-        </a>
-    </nav>
-    <div class="chat-container">
-        <div class="messages">
-            <div class="message-header">
-                <a href="#" class="message-nav">Messages</a> 
-                <i class='bx bx-chevron-down' id="arrow"></i>
-                <i class='bx bxs-plus-circle' style="font-size: x-large; color: rgba(53, 104, 153);"></i>  
-                
-                
+        <nav>
+            <i class='bx bx-menu'></i>
+            <a href="#" class="nav-link">Chat Support</a>
+            <a href="#" class="notification"><i class='bx bxs-bell' style="color: rgba(65, 65, 65, 0.967);"></i></a>
+            <a href="#" class="profile"><img src="images/logo.png"></a>
+        </nav>
+        <div class="chat-container">
+            <div class="messages">
+                <div class="message-header">
+                    <a href="#" class="message-nav">Messages</a> 
+                    <i class='bx bx-chevron-down' id="arrow"></i>
+                    <i class='bx bxs-plus-circle' style="font-size: x-large; color: rgba(53, 104, 153);"></i>  
+                </div>
+                <div class="search-message">
+                    <input type="text" name="search" placeholder="Search messages">
+                </div>
+                <ul class="message-list" id="messageList"> 
+                    <li class="message-item active">
+                        <img src="images/user1.jpg" alt="">
+                        <div class="messages-data">
+                            <span>John Doe</span>
+                            <small>24m</small>
+                            <p>Thank you</p>
+                        </div>
+                    </li>
+                    <li class="message-item active">
+                        <img src="images/user1.jpg" alt="">
+                        <div class="messages-data">
+                            <span>John Doe</span>
+                            <small>24m</small>
+                            <p>Thank you</p>
+                        </div>
+                    </li>
+                    <li class="message-item active">
+                        <img src="images/user1.jpg" alt="">
+                        <div class="messages-data">
+                            <span>John Doe</span>
+                            <small>24m</small>
+                            <p>Thank you</p>
+                            <span class="tag"></span>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div class="search-message">
-            <input type="text" name="search" placeholder="Search messages">
-        </div>
-            <ul class="message-list" id="messageList"> 
-         
-                <li class="message-item active" >
-                    <img src="images/user1.jpg" alt="">
-                    <div class="messages-data">
-                        <span>John Doe</span>
-                        <small>24m</small>
-                        <p>Thank you</p>
-                        <span class="tag">Bug</span>
-                    </div>
-            </li>
-           
-       
-    </ul>
-</div>
             <div class="chat-window">
                 <div class="chat-header">
                     <div>
@@ -120,13 +87,42 @@
                     <div class="message"><span>Okay. I have attached it now here in this message. Thank you</span></div>
                 </div>
                 <div class="chat-input">
-                    <img src="images/paperclip-regular-24 (1).png">
                     <input type="text" id="messageInput" placeholder="Type a message">
+                    <i class='bx bxs-send' id="sendIcon" style="font-size: 24px; cursor: pointer; color: rgba(53, 104, 153);"></i>
                 </div>
             </div>
         </div>
-    
-</section>
+    </section>
     <script src="script.js"></script>
+    <script>
+        document.getElementById('sendIcon').addEventListener('click', function() {
+            var message = document.getElementById('messageInput').value;
+            if (message.trim() !== '') {
+                document.getElementById('messageInput').value = '';
+                var chatContent = document.getElementById('chatContent');
+                var newMessage = document.createElement('div');
+                newMessage.classList.add('message', 'support');
+                newMessage.textContent = message;
+                chatContent.appendChild(newMessage);
+                chatContent.scrollTop = chatContent.scrollHeight; // Scroll to bottom
+                // Now you can send `message` to your server
+                // For example, using AJAX:
+                /*
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/send_message', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send('message=' + encodeURIComponent(message));
+                */
+            }
+        });
+
+        // Optional: Send message on Enter key press
+        document.getElementById('messageInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('sendIcon').click();
+            }
+        });
+    </script>
 </body>
 </html>

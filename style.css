@@ -524,11 +524,10 @@ a{
 
 .chat-input input {
     flex: 1;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    margin-right: 20px;
-    background-image: url(images/send-solid-24.png);
+    margin-right: 0px;
     background-repeat: no-repeat;
     background-position: 99%;
     background-size: 20px;
@@ -539,3 +538,4 @@ a{
     margin-top: 10px;
     margin-right: 10px;
 }
+
