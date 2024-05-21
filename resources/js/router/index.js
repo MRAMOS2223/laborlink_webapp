@@ -22,7 +22,7 @@ const router = createRouter({
         },
         {
           path: 'chat-support',
-          component: () => import('../pages/cards.vue'),
+          component: () => import('../pages/chat-support.vue'),
         },
         {
           path: 'statistics',

@@ -20,32 +20,30 @@ let title = ""
 
 function updateTitle(linkTitle) {
   
-    if(linkTitle.includes("transactions")){
+  if(linkTitle.includes("transactions")){
     title="Transactions"
-    }
-    else if(linkTitle.includes("dashboard")){
-      title="Dashboard"
-    }
-    else if(linkTitle.includes("employers")){
-      title="Employers"
-    }
-    else if(linkTitle.includes("applicants")){
-      title="Applicants"
-    }
-    else if(linkTitle.includes("chat-support")){
-      title="Chat Support"
-    }
-    else if(linkTitle.includes("statistics")){
-      title="Statistics"
-    }
-    else if(linkTitle.includes("subscribers")){
-      title="Subscribers"
-    }
+  }
+  else if(linkTitle.includes("dashboard")){
+    title="Dashboard"
+  }
+  else if(linkTitle.includes("employers")){
+    title="Employers"
+  }
+  else if(linkTitle.includes("applicants")){
+    title="Applicants"
+  }
+  else if(linkTitle.includes("chat-support")){
+    title="Chat Support"
+  }
+  else if(linkTitle.includes("statistics")){
+    title="Statistics"
+  }
+  else if(linkTitle.includes("subscribers")){
+    title="Subscribers"
+  }
 }
 
-
-updateTitle(window.location.href);
-
+updateTitle(window.location.href)
 </script>
 
 <template>
@@ -53,7 +51,6 @@ updateTitle(window.location.href);
     <!-- 👉 navbar -->
     <template #navbar="{ toggleVerticalOverlayNavActive }">
       <div class="d-flex h-100 align-center">
-        
         <!-- 👉 Vertical nav toggle in overlay mode -->
         <IconBtn
           class="ms-n3 d-lg-none"
@@ -62,7 +59,9 @@ updateTitle(window.location.href);
           <VIcon icon="bx-menu" />
         </IconBtn>
 
-        <h3 class="title">{{ title }}</h3>
+        <h3 class="title">
+          {{ title }}
+        </h3>
 
         <VSpacer />
 
@@ -74,65 +73,65 @@ updateTitle(window.location.href);
 
     <template #vertical-nav-content>
       <VerticalNavLink
-        v-on:click="updateTitle('dashboard')"
         :item="{
           title: 'Dashboard',
           icon: 'bx-home',
           to: '/dashboard',
         }"
+        @click="updateTitle('dashboard')"
       />
       <VerticalNavLink
-        v-on:click="updateTitle('employers')"
         :item="{
           title: 'Employers',
-          icon: 'mdi-account-cog-outline',
+          icon: 'mdi-domain',
           to: '/employers',
         }"
+        @click="updateTitle('employers')"
       />
 
       <VerticalNavLink
-        v-on:click="updateTitle('applicants')"
         :item="{
           title: 'Applicants',
-          icon: 'mdi-account-cog-outline',
+          icon: 'mdi-account-group',
           to: '/applicants',
         }"
+        @click="updateTitle('applicants')"
       />
 
       <VerticalNavLink
-        v-on:click="updateTitle('chat-support')"
         :item="{
           title: 'Chat Support',
-          icon: 'mdi-account-cog-outline',
+          icon: 'mdi-face-agent',
           to: '/chat-support',
         }"
+        @click="updateTitle('chat-support')"
       />
 
       <VerticalNavLink
-        v-on:click="updateTitle('statistics')"
         :item="{
           title: 'Statistics',
-          icon: 'mdi-account-cog-outline',
+          icon: 'mdi-chart-box-outline',
           to: '/statistics',
         }"
+        @click="updateTitle('statistics')"
       />
       
       <VerticalNavLink
-        v-on:click="updateTitle('subscribers')"
         :item="{
           title: 'Subscribers',
-          icon: 'mdi-account-cog-outline',
+          icon: 'mdi-account-multiple-outline',
           to: '/subscribers',
         }"
+        @click="updateTitle('subscribers')"
       />
 
       <VerticalNavLink
-        v-on:click="updateTitle('transactions')"
         :item="{
           title: 'Transactions',
-          icon: 'mdi-account-cog-outline',
+          icon: 'mdi-bank-transfer',
           to: '/transactions',
         }"
+        @click="updateTitle('transactions')"
       />
     </template>
     <slot />
@@ -154,7 +153,7 @@ updateTitle(window.location.href);
   padding-inline: 0.25rem;
 }
 
-.title{
+.title {
   color: black;
 }
 </style>

@@ -1,9 +1,5 @@
 <script setup>
-import applicantsNumberIcon from '@images/icons/logo/applicants-number-icon.png';
-import jobPostingsIcon from '@images/icons/logo/job-postings-icon.png';
-import successfulHiresIcon from '@images/icons/logo/successful-hires-icon.png';
-import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrength.vue';
-
+import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrength.vue'
 </script>
 
 <template>
@@ -13,7 +9,6 @@ import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrengt
       sm="12"
     >
       <VRow>
-     
         <VCol
           cols="2"
           md="2"
@@ -28,13 +23,9 @@ import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrengt
                   {{ companiesCount }}
                 </h5>
                 
-                <span
-                  class="d-flex align-center gap-1 text-sm"
-                >
-                </span>
+                <span class="d-flex align-center gap-1 text-sm" />
               </VCardText>
             </VRow>
-            
           </VCard>
         </VCol>
 
@@ -52,13 +43,9 @@ import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrengt
                   {{ applicantCount }}
                 </h5>
                 
-                <span
-                  class="d-flex align-center gap-1 text-sm"
-                >
-                </span>
+                <span class="d-flex align-center gap-1 text-sm" />
               </VCardText>
             </VRow>
-            
           </VCard>
         </VCol>
 
@@ -76,13 +63,9 @@ import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrengt
                   {{ jobPostingCount }}
                 </h5>
                 
-                <span
-                  class="d-flex align-center gap-1 text-sm"
-                >
-                </span>
+                <span class="d-flex align-center gap-1 text-sm" />
               </VCardText>
             </VRow>
-            
           </VCard>
         </VCol>
 
@@ -100,13 +83,9 @@ import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrengt
                   {{ rejectedCount }}
                 </h5>
                 
-                <span
-                  class="d-flex align-center gap-1 text-sm"
-                >
-                </span>
+                <span class="d-flex align-center gap-1 text-sm" />
               </VCardText>
             </VRow>
-            
           </VCard>
         </VCol>
 
@@ -124,13 +103,9 @@ import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrengt
                   {{ hiredCount }}
                 </h5>
                 
-                <span
-                  class="d-flex align-center gap-1 text-sm"
-                >
-                </span>
+                <span class="d-flex align-center gap-1 text-sm" />
               </VCardText>
             </VRow>
-            
           </VCard>
         </VCol>
 
@@ -148,17 +123,11 @@ import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrengt
                   {{ interviewedCount }}
                 </h5>
                 
-                <span
-                  class="d-flex align-center gap-1 text-sm"
-                >
-                </span>
+                <span class="d-flex align-center gap-1 text-sm" />
               </VCardText>
             </VRow>
-            
           </VCard>
         </VCol>
-
-        
       </VRow>
     </VCol>
 
@@ -170,127 +139,133 @@ import AnalyticsProfileStrength from '../views/dashboard/AnalyticsProfileStrengt
     </VCol>
   </VRow>
 </template>
+
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
-    data() {
-        return {
-            BASE_API: window.location.origin+"/api",
-            GET_HIRED_COUNT: "/v1/statistics/hire-count",
-            GET_JOB_POSTING_COUNT: "/v1/statistics/job-postings-count",
-            GET_APPLICANT_COUNT: "/v1/statistics/applicants-count",
-            GET_REJECTED_COUNT: "/v1/statistics/rejected-count",
-            GET_COMPANIES_COUNT: "/v1/statistics/companies-count",
-            GET_INTERVIEWED_COUNT: "/v1/statistics/interviewed-count",
-            hiredCount: 0,
-            jobPostingCount: 0,
-            applicantCount: 0,
-            rejectedCount: 0,
-            companiesCount: 0,
-            interviewedCount: 0,
-        }
+  data() {
+    return {
+      BASE_API: window.location.origin+"/api",
+      GET_HIRED_COUNT: "/v1/statistics/hire-count",
+      GET_JOB_POSTING_COUNT: "/v1/statistics/job-postings-count",
+      GET_APPLICANT_COUNT: "/v1/statistics/applicants-count",
+      GET_REJECTED_COUNT: "/v1/statistics/rejected-count",
+      GET_COMPANIES_COUNT: "/v1/statistics/companies-count",
+      GET_INTERVIEWED_COUNT: "/v1/statistics/interviewed-count",
+      hiredCount: 0,
+      jobPostingCount: 0,
+      applicantCount: 0,
+      rejectedCount: 0,
+      companiesCount: 0,
+      interviewedCount: 0,
+    }
+  },
+  mounted() {
+    this.getHiredCount()
+    this.getJobPostingCount()
+    this.getApplicantCount()
+    this.getRejectedCount()
+    this.getCompaniesCount()
+    this.getInterviewedCount()
+  },
+  created(){
+
+  },
+  methods: {
+    getHiredCount(){
+      axios
+        .get(this.BASE_API.concat(this.GET_HIRED_COUNT), this.status)
+        .then(response => {
+          if(response.data.success){
+            var data = response.data.data
+            this.hiredCount = data
+          }
+        })
     },
-    mounted() {
-        this.getHiredCount();
-        this.getJobPostingCount();
-        this.getApplicantCount();
-        this.getRejectedCount();
-        this.getCompaniesCount();
-        this.getInterviewedCount();
+
+    getJobPostingCount(){
+      axios
+        .get(this.BASE_API.concat(this.GET_JOB_POSTING_COUNT), this.status)
+        .then(response => {
+          if(response.data.success){
+            var data = response.data.data
+            this.jobPostingCount = data
+          }
+        })
     },
-    methods: {
-        getHiredCount(){
-            axios
-                .get(this.BASE_API.concat(this.GET_HIRED_COUNT), this.status)
-                .then(response => {
-                    if(response.data.success){
-                        var data = response.data.data
-                        this.hiredCount = data;
-                    }
-                });
-        },
 
-        getJobPostingCount(){
-            axios
-                .get(this.BASE_API.concat(this.GET_JOB_POSTING_COUNT), this.status)
-                .then(response => {
-                    if(response.data.success){
-                        var data = response.data.data
-                        this.jobPostingCount = data;
-                    }
-                });
-        },
-
-        getApplicantCount(){
-            axios
-                .get(this.BASE_API.concat(this.GET_APPLICANT_COUNT), this.status)
-                .then(response => {
-                    if(response.data.success){
-                        var data = response.data.data
-                        this.applicantCount = data;
-                    }
-                });
-        },
-
-        getRejectedCount(){
-            axios
-                .get(this.BASE_API.concat(this.GET_REJECTED_COUNT), this.status)
-                .then(response => {
-                    if(response.data.success){
-                        var data = response.data.data
-                        this.rejectedCount = data;
-                    }
-                });
-        },
-
-        getInterviewedCount(){
-            axios
-                .get(this.BASE_API.concat(this.GET_INTERVIEWED_COUNT), this.status)
-                .then(response => {
-                    if(response.data.success){
-                        var data = response.data.data
-                        this.interviewedCount = data;
-                    }
-                });
-        },
-
-        getCompaniesCount(){
-            axios
-                .get(this.BASE_API.concat(this.GET_COMPANIES_COUNT), this.status)
-                .then(response => {
-                    if(response.data.success){
-                        var data = response.data.data
-                        this.companiesCount = data;
-                    }
-                });
-        },
-
+    getApplicantCount(){
+      axios
+        .get(this.BASE_API.concat(this.GET_APPLICANT_COUNT), this.status)
+        .then(response => {
+          if(response.data.success){
+            var data = response.data.data
+            this.applicantCount = data
+          }
+        })
     },
-    created(){
 
+    getRejectedCount(){
+      axios
+        .get(this.BASE_API.concat(this.GET_REJECTED_COUNT), this.status)
+        .then(response => {
+          if(response.data.success){
+            var data = response.data.data
+            this.rejectedCount = data
+          }
+        })
     },
+
+    getInterviewedCount(){
+      axios
+        .get(this.BASE_API.concat(this.GET_INTERVIEWED_COUNT), this.status)
+        .then(response => {
+          if(response.data.success){
+            var data = response.data.data
+            this.interviewedCount = data
+          }
+        })
+    },
+
+    getCompaniesCount(){
+      axios
+        .get(this.BASE_API.concat(this.GET_COMPANIES_COUNT), this.status)
+        .then(response => {
+          if(response.data.success){
+            var data = response.data.data
+            this.companiesCount = data
+          }
+        })
+    },
+
+  },
 
 }
 </script>
+
 <style>
-.color-green{
-  color:#2BC155;
+.color-green {
+  color: #2bc155;
 }
-.color-blue{
-  color:#3F9AE0;
+
+.color-blue {
+  color: #3f9ae0;
 }
-.color-yellow{
-  color:#FF9B52;
+
+.color-yellow {
+  color: #ff9b52;
 }
-.margin-top{
-  margin-top:52px;
+
+.margin-top {
+  margin-block-start: 52px;
 }
-.margin-left{
-  margin-left:20px;
+
+.margin-left {
+  margin-inline-start: 20px;
 }
-.margin-symmetrical{
-  margin-top:15px;
-  margin-bottom:15px
+
+.margin-symmetrical {
+  margin-block: 15px;
 }
 </style>

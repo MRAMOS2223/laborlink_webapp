@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
   <VBadge
     dot
@@ -29,8 +26,10 @@
           <VListItem>
             <template #prepend>
               <VListItemAction start>
-                  <VImg height="40" src="https://firebasestorage.googleapis.com/v0/b/labor-link-f9424.appspot.com/o/app_image_assets%2Fpngwing.com.png?alt=media&token=ab84abf3-f915-4422-a711-00314197b9ae" />
-           
+                <VImg
+                  height="40"
+                  src="https://firebasestorage.googleapis.com/v0/b/labor-link-f9424.appspot.com/o/app_image_assets%2Fpngwing.com.png?alt=media&token=ab84abf3-f915-4422-a711-00314197b9ae"
+                />
               </VListItemAction>
             </template>
 
