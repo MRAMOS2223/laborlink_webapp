@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use DateTime;
 use Illuminate\Http\Request;
 use Kreait\Firebase\Contract\Firestore;
+use Carbon\Carbon;
+use DateTimeZone;
 
 class ChatController extends Controller
 {
@@ -84,15 +86,19 @@ class ChatController extends Controller
     }
 
     public function insertChatMessage(Request $request){
+        $currentDateTime = Carbon::now('Asia/Shanghai')->addHours(15);
+        $timestampShanghai = $currentDateTime->timestamp * 1000 + (int) ($currentDateTime->micro / 1000);
+        $currentTimestamp = strval($timestampShanghai);
+
         $chatMessage = $request->input('message');
         $id = $request->input('id');
         $receiver = $request->input('receiver');
-
+        
         $messagePayload = [
             'fromId' => 'BYqNI3olHYS4VeX1ifYUcDbBJzr1',
             'msg' => $chatMessage,
             'read' => null,
-            'sent'=> time(),
+            'sent'=> $currentTimestamp,
             'toId' => $receiver,
             'type' => 'text'
         ];
@@ -100,12 +106,13 @@ class ChatController extends Controller
         $this->firestoreDB->collection('chats')
             ->document($id)
             ->collection('messages')
-            ->add($messagePayload);
+            ->document($currentTimestamp)
+            ->set($messagePayload);
 
         $response = [
             'data' => [
                 'message' => $chatMessage,
-                'time' => \Carbon\Carbon::now(),
+                'time' => $currentTimestamp,
             ],
             'success' => true,
             'message' => 'Chat has been successfully sent!',

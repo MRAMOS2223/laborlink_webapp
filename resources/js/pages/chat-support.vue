@@ -91,10 +91,6 @@ export default {
                 .post(this.BASE_API.concat(this.POST_CHAT), payload)
                 .then(response => {
                     if(response.data.success){
-                        var data = response.data.data
-                        console.log(data)
-                        this.users = data;
-
                         this.newMessage = '';
                         setTimeout(() => {
                           document.getElementById("chatBody").scrollTop = document.getElementById("chatBody").scrollHeight;
