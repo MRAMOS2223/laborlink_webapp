@@ -1,5 +1,5 @@
 <script setup>
-import logoImage from '@images/icons/logo/laborlink.png'
+import logoImage from '@images/icons/logo/laborlink.png';
 </script>
 
 <template>
@@ -46,7 +46,7 @@ import logoImage from '@images/icons/logo/laborlink.png'
   </div>
 </template>
 
-<script setup>
+<script>
 export default {
   data(){
     return {
@@ -237,6 +237,7 @@ input[type="password"],
 .goback {
   display: block;
   color: rgba(53, 104, 153);
+  cursor: pointer;
   font-size: 12px;
   margin-block-start: 25px;
   text-align: center;

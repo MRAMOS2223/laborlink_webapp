@@ -38,10 +38,10 @@
             </VListItemTitle>
             <VListItemSubtitle>Admin</VListItemSubtitle>
           </VListItem>
-          <VDivider class="my-2" />
+          <!-- <VDivider class="my-2" /> -->
 
           <!-- 👉 Profile -->
-          <VListItem to="/profile">
+          <!-- <VListItem to="/profile">
             <template #prepend>
               <VIcon
                 class="me-2"
@@ -51,7 +51,7 @@
             </template>
 
             <VListItemTitle>Profile</VListItemTitle>
-          </VListItem>
+          </VListItem> -->
           <!-- Divider -->
           <VDivider class="my-2" />
 
