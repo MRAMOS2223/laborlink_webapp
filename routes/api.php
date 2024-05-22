@@ -7,6 +7,7 @@ use App\Http\Controllers\ApplicantsController;
 use App\Http\Controllers\SubscribersController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/subscribers', [SubscribersController::class, 'index']);
     Route::get('/transactions', [TransactionsController::class, 'index']);
 
-    /* Dashboard */
+    /* Dashboard / Statistics */
     Route::get('/statistics/hire-count', [DashboardController::class, 'getHireCount']);
     Route::get('/statistics/job-postings-count', [DashboardController::class, 'getJobPostingsCount']);
     Route::get('/statistics/applicants-count', [DashboardController::class, 'getApplicantsCount']);
@@ -38,4 +39,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/statistics/companies-count', [DashboardController::class, 'getCompaniesCount']);
     Route::get('/statistics/interviewed-count', [DashboardController::class, 'getInterviewedCount']);
     Route::get('/statistics/profile-strength', [DashboardController::class, 'getProfileStrength']);
+
+    /*Chat Support*/
+    Route::get('/admin/chat', [ChatController::class, 'getChatList']);
+    Route::post('/admin/sendChat', [ChatController::class, 'insertChatMessage']);
 });

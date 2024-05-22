@@ -31,7 +31,6 @@ const chartOptions = computed(() => {
           color: "#3F9AE0",
         },
       },
-      
       dataLabels: { enabled: false },
       stroke: {
         width: 4,

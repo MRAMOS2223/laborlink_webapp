@@ -173,23 +173,27 @@ export default {
 }
 </script>
 <style>
-.color-green{
-  color:#2BC155;
+.color-green {
+  color: #2bc155;
 }
-.color-blue{
-  color:#3F9AE0;
+
+.color-blue {
+  color: #3f9ae0;
 }
-.color-yellow{
-  color:#FF9B52;
+
+.color-yellow {
+  color: #ff9b52;
 }
-.margin-top{
-  margin-top:52px;
+
+.margin-top {
+  margin-block-start: 52px;
 }
-.margin-left{
-  margin-left:20px;
+
+.margin-left {
+  margin-inline-start: 20px;
 }
-.margin-symmetrical{
-  margin-top:15px;
-  margin-bottom:15px
+
+.margin-symmetrical {
+  margin-block: 15px;
 }
 </style>
