@@ -1,5 +1,5 @@
 <template>
- <VCard class="chat-container">
+ <VCard class="chat-container" v-if="!loading" >
         <div class="chat-list">
             <div  v-for="user in users" :key="user.id" class="chat-card" @click="selectUser(user)">
               <img :src="user.profilePic" alt="Profile Picture" class="profile-pic">
@@ -9,7 +9,7 @@
               </div>
             </div>
         </div>
-        <div class="chat-content">
+        <div class="chat-content"  v-if="!loading">
           <div v-if="isUserSelected">
             <div class="chat-header">
                 <img :src="selectedUser.profilePic" alt="Profile Picture" class="profile-pic">
@@ -30,11 +30,15 @@
                 </div>
             </div>
           </div>
-          <div v-else class="no-conversation">
+          <div v-else class="no-conversation" >
               No conversation selected
           </div>
         </div>
  </VCard>
+ <VCard class="chat-container loading" v-else >
+      <img src="https://firebasestorage.googleapis.com/v0/b/labor-link-f9424.appspot.com/o/app_image_assets%2Floading-gif.gif?alt=media&token=c2ef9c6e-032f-4772-bc5f-f47c23953c2f" alt="Loading..." />
+      <span class="loader-text">Fetching Data</span>
+  </VCard>
 </template>
 
 <script>
@@ -47,7 +51,8 @@ export default {
             POST_CHAT: "/v1/admin/sendChat",
             users: [],
           selectedUser: {},
-          newMessage: ''
+          newMessage: '',
+          loading: true
         }
     },
     computed: {
@@ -67,6 +72,7 @@ export default {
                         var data = response.data.data
                         console.log(data)
                         this.users = data;
+                        this.loading = false;
                     }
                 });
         },
@@ -280,4 +286,21 @@ html {
   font-size: 1.5em;
   text-align: center;
 }
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: calc(100vh - 120px);
+}
+
+.loading img {
+  block-size: 80px;
+  inline-size: 80px;
+}
+
+.loader-text {
+  padding-inline-start: 1px;
+}
+
 </style>

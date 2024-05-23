@@ -7,7 +7,7 @@ import AnalyticsTotalRevenue from '../views/dashboard/AnalyticsTotalRevenue.vue'
 </script>
 
 <template>
-  <VRow>
+  <VRow  v-if="!loading">
     <VCol
       cols="12"
       sm="12"
@@ -110,6 +110,10 @@ import AnalyticsTotalRevenue from '../views/dashboard/AnalyticsTotalRevenue.vue'
       <AnalyticsTotalRevenue />
     </VCol>
   </VRow>
+  <VCard class="chat-container loading" v-else >
+    <img src="https://firebasestorage.googleapis.com/v0/b/labor-link-f9424.appspot.com/o/app_image_assets%2Floading-gif.gif?alt=media&token=c2ef9c6e-032f-4772-bc5f-f47c23953c2f" alt="Loading..." />
+    <span class="loader-text">Fetching Data</span>
+  </VCard>
 </template>
 <script>
 import axios from 'axios';
@@ -124,6 +128,7 @@ export default {
             hiredCount: 0,
             jobPostingCount: 0,
             applicantCount: 0,
+            loading: true
         }
     },
     mounted() {
@@ -161,6 +166,7 @@ export default {
                     if(response.data.success){
                         var data = response.data.data
                         this.applicantCount = data;
+                        this.loading = false;
                     }
                 });
         },
@@ -195,5 +201,27 @@ export default {
 
 .margin-symmetrical {
   margin-block: 15px;
+}
+
+.chat-container {
+  display: flex;
+  block-size: 80vh;
+  inline-size: 100%;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: calc(100vh - 120px);
+}
+
+.loading img {
+  block-size: 80px;
+  inline-size: 80px;
+}
+
+.loader-text {
+  padding-inline-start: 1px;
 }
 </style>

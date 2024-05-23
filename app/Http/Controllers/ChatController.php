@@ -28,7 +28,7 @@ class ChatController extends Controller
             $output = [
                 'id' => $user->id(),
                 'name'=> '',
-                'profilePic' => 'https://demos.themeselection.com/sneat-vuetify-vuejs-admin-template/demo-1/assets/avatar-2-e08c0d9d.png',
+                'profilePic' => '',
                 'messages' => [],
                 'receiver_id' => ''
             ];
@@ -38,6 +38,8 @@ class ChatController extends Controller
             ->snapshot();
 
             $output['name'] = $userDetailDocument->data()["name"];
+
+            $output['profilePic'] = $userDetailDocument->data()["user_type"] == 'Applicant' ? 'https://firebasestorage.googleapis.com/v0/b/labor-link-f9424.appspot.com/o/app_image_assets%2Fpngwing.com.png?alt=media&token=ab84abf3-f915-4422-a711-00314197b9ae' : 'https://firebasestorage.googleapis.com/v0/b/labor-link-f9424.appspot.com/o/company_images%2Fdefault-company-avatar-removebg-preview.png?alt=media&token=a3649b8b-5034-406c-95b0-2d289e558be2';
 
             $messagesDocuments = $this->firestoreDB->collection('chats')
             ->document($adminId.'_'.$user->id())
