@@ -26,9 +26,9 @@ import backgroundImage from '@images/pages/login-bg.png';
             <p class="login-p">See what is going on with your business</p>
             <form class="login-form">
                 <label class="login-label" for="email">Email</label>
-                <input type="text" id="uemail" name="email" placeholder="email@example.com">
+                <input v-model="form.email" type="text" placeholder="email@example.com">
                 <label class="login-label" for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="************">
+                <input v-model="form.password" type="password" placeholder="************">
                 <div class="remember-me-checkbox">
                     <label class="login-label" for="remember-me">
                         <input type="checkbox" element id="remember-me" name="remember-me">
@@ -38,6 +38,16 @@ import backgroundImage from '@images/pages/login-bg.png';
                 </div>
                 <button type="button" class="login-button" v-on:click="authenticateUser">Login</button>
             </form>
+
+            <v-dialog v-model="showErrorModal" max-width="400">
+              <v-card>
+                <v-card-title>Error</v-card-title>
+                <v-card-text> {{ errorMessage }}</v-card-text>
+                <v-card-actions>
+                  <v-btn color="primary" @click="dismissErrorModal">OK</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
             
         </main>
         
@@ -51,11 +61,20 @@ import backgroundImage from '@images/pages/login-bg.png';
 </template>
 
 <script>
-    export default {
+import axios from 'axios';
+  export default {
     data(){
         return {
-        forgotPasswordLink: "/forgot-password",
-        dashboardLink: "/dashboard"
+          form: {
+            email: '',
+            password: ''
+          },
+          forgotPasswordLink: "/forgot-password",
+          dashboardLink: "/dashboard",
+          BASE_API: window.location.origin+"/api",
+          POST_AUTH: "/v1/admin/auth",
+          showErrorModal: false,
+          errorMessage: '',
         }
     },
     methods: {
@@ -63,7 +82,25 @@ import backgroundImage from '@images/pages/login-bg.png';
             this.$router.push('/forgot-password');
         },
         authenticateUser(){
-            this.$router.push(this.dashboardLink);
+          if(this.form.email == "" || this.form.password == ""){
+            this.errorMessage = "Please enter email and password";
+            this.showErrorModal = true;
+          }else{
+            axios
+              .post(this.BASE_API.concat(this.POST_AUTH), this.form)
+              .then(response => {
+                  if(response.data.success){
+                    this.$router.push(this.dashboardLink);
+                  }else{
+                    this.errorMessage = response.data.error;
+                    this.showErrorModal = true;
+                  }
+              })
+          }
+         
+        },
+        dismissErrorModal() {
+          this.showErrorModal = false;
         }
     }
     }

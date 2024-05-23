@@ -8,6 +8,7 @@ use App\Http\Controllers\SubscribersController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1'], function () {
+    Route::post('/admin/auth', [AuthController::class, 'authenticateLogin']);
+
     Route::get('/employers', [EmployersController::class, 'index']);
     Route::get('/applicants', [ApplicantsController::class, 'index']);
     Route::get('/subscribers', [SubscribersController::class, 'index']);
