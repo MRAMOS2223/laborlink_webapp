@@ -6,10 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Kreait\Firebase\Factory;
 
-use Kreait\Firebase\Exception\Auth\EmailExists as EmailExistsException;
-use Kreait\Firebase\Exception\Auth\InvalidPassword as InvalidPasswordException;
-use Kreait\Firebase\Exception\Auth\UserNotFound as UserNotFoundException;
-
 class AuthController extends Controller
 {
     public function authenticateLogin(Request $request)
