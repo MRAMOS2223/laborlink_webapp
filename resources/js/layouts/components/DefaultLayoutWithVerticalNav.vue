@@ -7,7 +7,6 @@ import { useTheme } from 'vuetify'
 
 // Components
 import Footer from '@/layouts/components/Footer.vue'
-import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
 
 const vuetifyTheme = useTheme()
@@ -64,9 +63,6 @@ updateTitle(window.location.href)
         </h3>
 
         <VSpacer />
-
-        <NavbarThemeSwitcher class="me-2" />
-
         <UserProfile />
       </div>
     </template>

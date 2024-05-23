@@ -2,46 +2,46 @@
 import logoImage from '@images/icons/logo/laborlink.png';
 import backgroundImage from '@images/pages/login-bg.png';
 </script>
-<template class="body">
-  <div class="row">
-    <div class="column left">
+<template class="login-body">
+  <div class="login-row">
+    <div class="login-column login-left">
         <img
           class="background-image"
           :src="backgroundImage"
           alt="image"
         >
     </div>
-    <div class="column right inner-padding">
-        <header class="header">
-            <div class="logo">
+    <div class="login-column login-right inner-padding">
+        <header class="login-header">
+            <div class="login-logo">
                 <img
                     :src="logoImage"
                     alt=""
                   >
-            <h1 class="logo-text">LaborLink</h1>
+            <h1 class="login-logo-text h1">LaborLink</h1>
           </div>
         </header>
-        <main>
-            <h2>Login to your Account</h2>
-            <p>See what is going on with your business</p>
-            <form>
-                <label for="email">Email</label>
+        <main class="login-main">
+            <h2 class="h2">Login to your Account</h2>
+            <p class="login-p">See what is going on with your business</p>
+            <form class="login-form">
+                <label class="login-label" for="email">Email</label>
                 <input type="text" id="uemail" name="email" placeholder="email@example.com">
-                <label for="password">Password</label>
+                <label class="login-label" for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="************">
-                <div class="checkbox">
-                    <label for="remember-me">
+                <div class="remember-me-checkbox">
+                    <label class="login-label" for="remember-me">
                         <input type="checkbox" element id="remember-me" name="remember-me">
                         Remember Me
                     </label>
                     <a v-on:click="redirectToForgotPasswordPage" class="forgotpassword">Forgot Password?</a>
                 </div>
-                <button type="button" class="button" v-on:click="authenticateUser">Login</button>
+                <button type="button" class="login-button" v-on:click="authenticateUser">Login</button>
             </form>
             
         </main>
         
-         <footer>
+         <footer class="login-footer">
             <p>&copy; 2024 All Rights Reserved</p>
         </footer>
     </div>
@@ -72,7 +72,7 @@ import backgroundImage from '@images/pages/login-bg.png';
 <style lang="scss">
 @import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap";
 
-.body {
+.login-body {
   display: flex;
   padding: 0;
   margin: 0;
@@ -81,7 +81,7 @@ import backgroundImage from '@images/pages/login-bg.png';
   min-block-size: 100vh;
 }
 
-.container {
+.login-container {
   padding: 110px;
   border-radius: 0;
   background-color: #fff;
@@ -90,55 +90,55 @@ import backgroundImage from '@images/pages/login-bg.png';
   inline-size: 400px;
 }
 
-.header {
+.login-header {
   margin-block-start: 30px;
   padding-block: 20px 15px;
   padding-inline-start: 8px;
   text-align: start;
 }
 
-.logo {
+.login-logo {
   display: flex;
   align-items: left;
 }
 
-.logo-text {
+.login-logo-text {
   padding-block-start: 10px;
 }
 
-.logo img {
+.login-logo img {
   block-size: 50px;
   inline-size: 50px;
   margin-inline-end: 10px;
 }
 
-h1 {
+.h1 {
   font-size: 20px;
   margin-inline-start: 20;
 }
 
-h2 {
+.h2 {
   color: #676767;
   font-size: 25px;
 }
 
-main {
+.login-main {
   padding: 10px;
 }
 
-p {
+.login-p {
   color: #676767;
   font-size: 12px;
   line-height: 1;
   margin-block-end: 20px;
 }
 
-form {
+.login-form {
   display: flex;
   flex-direction: column;
 }
 
-label {
+.login-label {
   color: gray;
   font-size: 12px;
   font-weight: bold;
@@ -153,21 +153,21 @@ input[type="password"] {
   margin-block-end: 5px;
 }
 
-.checkbox {
+.remember-me-checkbox {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-block-end: 30px;
 }
 
-.checkbox a {
+.remember-me-checkbox a {
   color: rgba(53, 104, 153);
   font-size: 11px;
   font-weight: 600;
   text-decoration: none;
 }
 
-.button {
+.login-button {
   border: none;
   border-radius: 25px;
   background-color: rgba(53, 104, 153);
@@ -178,35 +178,35 @@ input[type="password"] {
   padding-inline: 20px;
 }
 
-footer {
+.login-footer {
   margin-block-start: 40px;
   text-align: center;
 }
 
-footer p {
+.login-footer p {
   color: gray;
   font-size: 11px;
 }
 
 /* Media query for smaller screens */
 @media screen and (max-width: 300px) {
-  .container {
+  .login-container {
     padding: 5px;
   }
 
-  h1 {
+  .h1 {
     font-size: 15px;
   }
 
-  h2 {
+  .h2 {
     font-size: 20px;
   }
 
-  p {
+  .login-p {
     font-size: 8px;
   }
 
-  label {
+  .login-label {
     font-size: 8px;
   }
 
@@ -215,23 +215,23 @@ footer p {
     padding: 8px;
   }
 
-  .checkbox a {
+  .remember-me-checkbox a {
     font-size: 5px;
   }
 
-  .button {
+  .login-button {
     padding-block: 8px;
     padding-inline: 16px;
   }
 
-  footer p {
+  .login-footer p {
     font-size: 8px;
   }
 }
 
 input[type="email"],
 input[type="password"],
-.button[type="button"] {
+.login-button[type="button"] {
   box-sizing: border-box;
   padding: 10px;
   border: 1px solid #ccc;
@@ -240,7 +240,7 @@ input[type="password"],
   margin-block-start: 5px;
 }
 
-.button[type="button"] {
+.login-button[type="button"] {
   border-radius: 25px;
   background-color: rgba(53, 104, 153);
   color: #fff;
@@ -261,23 +261,23 @@ input[type="password"],
   text-decoration: underline;
 }
 
-.column {
+.login-column {
   float: inline-start;
 }
 
-.left {
+.login-left {
   inline-size: 60%;
 }
 
-.right {
+.login-right {
   inline-size: 40%;
 }
 
-.row {
+.login-row {
   background-color: white;
 }
 
-.row::after {
+.login-row::after {
   display: table;
   clear: both;
   content: "";
