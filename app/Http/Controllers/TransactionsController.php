@@ -15,7 +15,7 @@ class TransactionsController extends Controller
     public function index(Request $request)
     {
         $transactions = [];
-        $documents = $this->firestoreDB->collection('transactions')->documents();
+        $documents = $this->firestoreDB->collection('transactions')->orderBy("transaction_datetime", "DESC")->documents();
 
         foreach ($documents as $document) {
             array_push($transactions, $document->data());
