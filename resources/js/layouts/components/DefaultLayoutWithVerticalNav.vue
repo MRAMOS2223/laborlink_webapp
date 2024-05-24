@@ -40,6 +40,9 @@ function updateTitle(linkTitle) {
   else if(linkTitle.includes("subscribers")){
     title="Subscribers"
   }
+  else if(linkTitle.includes("user-ids")){
+    title="User IDs"
+  }
 }
 
 updateTitle(window.location.href)
@@ -128,6 +131,15 @@ updateTitle(window.location.href)
           to: '/transactions',
         }"
         @click="updateTitle('transactions')"
+      />
+
+      <VerticalNavLink
+        :item="{
+          title: 'User IDs',
+          icon: 'mdi-card-account-details-outline',
+          to: '/user-ids',
+        }"
+        @click="updateTitle('user-ids')"
       />
     </template>
     <slot />

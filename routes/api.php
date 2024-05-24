@@ -9,6 +9,7 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\IDVerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/applicants', [ApplicantsController::class, 'index']);
     Route::get('/subscribers', [SubscribersController::class, 'index']);
     Route::get('/transactions', [TransactionsController::class, 'index']);
+    Route::get('/user/id/uploads', [IDVerificationController::class, 'index']);
 
     /* Dashboard / Statistics */
     Route::get('/statistics/hire-count', [DashboardController::class, 'getHireCount']);

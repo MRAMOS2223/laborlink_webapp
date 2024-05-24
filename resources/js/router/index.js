@@ -41,6 +41,10 @@ const router = createRouter({
           component: () => import('../pages/transactions.vue'),
         },
         {
+          path: 'user-ids',
+          component: () => import('../pages/user-id-verification.vue'),
+        },
+        {
           path: 'account-settings',
           component: () => import('../pages/account-settings.vue'),
         },
