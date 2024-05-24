@@ -22,6 +22,7 @@ import logoImage from '@images/icons/logo/laborlink.png';
         <label for="email">Email</label>
         <input
           id="email"
+          v-model="form.email"
           type="email"
           name="email"
           placeholder="email@example.com"
@@ -35,10 +36,31 @@ import logoImage from '@images/icons/logo/laborlink.png';
           Reset Password
         </button>
       </form>
+      
       <a
         class="goback"
         @click="redirectToLogin"
       >Back to Login</a>
+
+      <v-dialog v-model="showErrorModal" max-width="400">
+        <v-card>
+          <v-card-title>Error</v-card-title>
+          <v-card-text> {{ errorMessage }}</v-card-text>
+          <v-card-actions>
+            <v-btn color="primary" @click="dismissErrorModal">OK</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      <v-dialog v-model="showSuccessModal" max-width="400">
+        <v-card>
+          <v-card-title>Alert</v-card-title>
+          <v-card-text>An email has been sent to your email. Please check and reset your password.</v-card-text>
+          <v-card-actions>
+            <v-btn color="primary" @click="redirectToLogin">OK</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </main>
     <footer>
       <p>&copy; 2024 All Rights Reserved</p>
@@ -47,10 +69,19 @@ import logoImage from '@images/icons/logo/laborlink.png';
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data(){
     return {
       loginLink: "/login",
+      form: {
+        email: ''
+      },
+      BASE_API: window.location.origin+"/api",
+      POST_FORGOT_PASSWORD: "/v1/admin/forgot-password",
+      showErrorModal: false,
+      showSuccessModal: false,
+      errorMessage: '',
     }
   },
   methods: {
@@ -58,8 +89,26 @@ export default {
       this.$router.push(this.loginLink)
     },
     resetPassword(){
-      this.$router.push(this.loginLink)
+      if(this.form.email == "" ){
+        this.errorMessage = "Please enter email";
+        this.showErrorModal = true;
+      }else{
+        axios
+          .post(this.BASE_API.concat(this.POST_FORGOT_PASSWORD), this.form)
+          .then(response => {
+              if(response.data.success){
+                this.showSuccessModal = true;
+              }else{
+                this.errorMessage = response.data.error;
+                this.showErrorModal = true;
+              }
+          })
+      }
+      
     },
+    dismissErrorModal() {
+      this.showErrorModal = false;
+    }
   },
 }
 </script>

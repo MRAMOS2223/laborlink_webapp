@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/admin/auth', [AuthController::class, 'authenticateLogin']);
+    Route::post('/admin/forgot-password', [AuthController::class, 'forgotPassword']);
 
     Route::get('/employers', [EmployersController::class, 'index']);
     Route::get('/applicants', [ApplicantsController::class, 'index']);
