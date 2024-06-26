@@ -1,5 +1,16 @@
+<script setup>
+import '@fortawesome/fontawesome-free/css/all.css';
+import logoImage from '@images/icons/logo/laborlink.png';
+</script>
 <template>
   <div>
+    <VCard v-if="!loading">
+      <!-- <img height="80px" width="80px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1667px-PDF_file_icon.svg.png"> -->
+      <div class="button-container">
+        <button class="export-btn" v-on:click="exportApplicantsData"> <i class="fas fa-file-pdf fa-lg"></i>  Export Applicants Data to PDF</button>
+      </div>
+    </VCard>
+    <br/>
     <VRow v-if="!loading">
       <div class="employee-card" v-for="employee in applicantData" :key="employee.email_address">
         <div class="employee-column">
@@ -32,6 +43,8 @@
 </template>
 <script>
 import axios from 'axios';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 export default {
     data() {
@@ -59,6 +72,42 @@ export default {
                     }
                 });
         },
+        exportApplicantsData(){
+          const doc = new jsPDF();
+          const columns = ["Applicant Name", "Job Position", "Location","Expected Salary Range",  "Email Address"];
+          const rows = this.applicantData.map(data => [data.full_name, data.job_role,  data.address, "PHP ".concat(data.minimum_expected_salary == '' ? 0 : data.minimum_expected_salary).concat(" to PHP ").concat( data.maximum_expected_salary != '' ? data.maximum_expected_salary : 0),data.email_address]);
+          
+          doc.addImage(logoImage, 'PNG', 10, 10, 20, 20);
+
+          const title = "Applicants List";
+          doc.setFontSize(18);
+          const pageWidth = doc.internal.pageSize.getWidth();
+          const titleWidth = doc.getTextWidth(title);
+          const titleX = (pageWidth - titleWidth) / 2;
+          doc.text(title, titleX, 22);
+
+
+          const subtitle = "From January to December 2024";
+          doc.setTextColor(128, 128, 128);
+          doc.setFontSize(12);
+          const subtitleWidth = doc.getTextWidth(subtitle);
+          const subtitleX = (pageWidth - subtitleWidth) / 2;
+          doc.text(subtitle, subtitleX, 30);
+          
+
+          doc.autoTable({
+            head: [columns],
+            body: rows,
+            startY: 40,
+            columnStyles: {
+              3: {
+                cellWidth: 50
+              },
+            }
+          });
+
+          doc.save('Applicants List (January to December 2024).pdf');
+      }
 
     },
     created(){
@@ -68,6 +117,19 @@ export default {
 }
 </script>
 <style scoped>
+.button-container {
+  text-align: end;
+}
+
+.export-btn {
+  padding: 14px;
+  border-radius: 30px;
+  margin: 18px;
+  background-color: #346898;
+  color: white;
+  font-size: 12px;
+}
+
 .container {
   margin: auto;
   inline-size: 80%;

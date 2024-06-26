@@ -1,5 +1,16 @@
+<script setup>
+import '@fortawesome/fontawesome-free/css/all.css';
+import logoImage from '@images/icons/logo/laborlink.png';
+</script>
 <template>
   <div>
+    <VCard v-if="!loading">
+      <!-- <img height="80px" width="80px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1667px-PDF_file_icon.svg.png"> -->
+      <div class="button-container">
+        <button class="export-btn" v-on:click="exportUserIDUploadsData"> <i class="fas fa-file-pdf fa-lg"></i>  Export User ID Uploads Data to PDF</button>
+      </div>
+    </VCard>
+    <br/>
     <VRow v-if="!loading">
       <div class="user-card" v-for="user in userIDData" :key="user.id">
         <div class="user-column">
@@ -46,6 +57,8 @@
 </template>
 <script>
 import axios from 'axios';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 export default {
     data() {
@@ -84,7 +97,40 @@ export default {
 
         dismissModal(){
           this.showIDModal = false;
-        }
+        },
+
+        exportUserIDUploadsData(){
+          const doc = new jsPDF();
+          const columns = ["Name", "Designation", "Address", "IDs Uploaded"];
+          const rows = this.userIDData.map(data => [data.user_name, data.field, data.location, data.ids.map(obj => `${obj.id_type}`).join(', ')]);
+          
+          doc.addImage(logoImage, 'PNG', 10, 10, 20, 20);
+
+          const title = "User's ID Uploads List";
+          doc.setFontSize(18);
+          const pageWidth = doc.internal.pageSize.getWidth();
+          const titleWidth = doc.getTextWidth(title);
+          const titleX = (pageWidth - titleWidth) / 2;
+          doc.text(title, titleX, 22);
+
+
+          const subtitle = "From January to December 2024";
+          doc.setTextColor(128, 128, 128);
+          doc.setFontSize(12);
+          const subtitleWidth = doc.getTextWidth(subtitle);
+          const subtitleX = (pageWidth - subtitleWidth) / 2;
+          doc.text(subtitle, subtitleX, 30);
+          
+
+          doc.autoTable({
+            head: [columns],
+            body: rows,
+            startY: 40,
+          });
+
+          doc.save('User\'s ID Uploads List (January to December 2024).pdf');
+      }
+
 
     },
     created(){
@@ -94,7 +140,11 @@ export default {
 }
 </script>
 <style scoped>
-.view-id-btn {
+.button-container {
+  text-align: end;
+}
+
+.export-btn {
   padding: 14px;
   border-radius: 30px;
   margin: 18px;
@@ -103,8 +153,13 @@ export default {
   font-size: 12px;
 }
 
-.button-container {
-  text-align: end;
+.view-id-btn {
+  padding: 14px;
+  border-radius: 30px;
+  margin: 18px;
+  background-color: #346898;
+  color: white;
+  font-size: 12px;
 }
 
 .container {
